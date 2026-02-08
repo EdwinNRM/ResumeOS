@@ -45,6 +45,9 @@ const styles = {
   summary: {
     fontSize: '10pt',
     textAlign: 'justify' as const,
+    whiteSpace: 'pre-wrap' as const,
+    overflowWrap: 'anywhere' as const,
+    wordBreak: 'break-word' as const,
   },
   sectionTitle: {
     fontSize: '12pt',
