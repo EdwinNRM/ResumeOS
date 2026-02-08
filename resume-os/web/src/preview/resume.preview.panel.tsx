@@ -14,7 +14,6 @@ export const ResumePreviewPanel: React.FC = () => {
         const containerWidth = containerRef.current.offsetWidth;
         // A4 width in pixels at 96 DPI is approx 794px
         // Add padding: 2rem * 16 = 32px * 2 = 64px
-        const targetWidth = 794 + 64; 
         const newScale = Math.min(1, (containerWidth - 40) / 794);
         setScale(Math.max(0.4, newScale));
       }

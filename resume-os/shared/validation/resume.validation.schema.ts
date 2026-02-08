@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ResumeBlock } from '../schema/resume.block.schema';
 
 export const ResumeBlockSchema = z.discriminatedUnion('type', [
   z.object({

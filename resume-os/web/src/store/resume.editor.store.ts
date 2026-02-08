@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { ResumeBlock } from '../../../shared/schema/resume.block.schema';
 import { atsRules } from '../../../shared/ats/resume.ats.rules';
-import { v4 as uuidv4 } from 'uuid'; // Assuming uuid is available or I need to implement a simple generator
 
 // Simple ID generator if uuid is not available in environment, 
 // strictly adhering to "no external libs unless necessary" but UUID is standard. 
@@ -49,13 +48,13 @@ export const useResumeStore = create<ResumeState>()(
       focusedBlockId: null,
 
       addBlock: (type, afterId) => {
-        const newBlock: ResumeBlock = {
+        const newBlock: any = {
           id: generateId(),
           type,
           content: '',
           items: [], // Initialize based on type generally, simplified here
           list: []
-        } as any; // Type casting for simplicity in initialization logic
+        }; 
 
         // Initialize specific structures
         if (type === 'experience') newBlock['items'] = [];
