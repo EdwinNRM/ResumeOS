@@ -70,14 +70,10 @@ export const BlockWrapper: React.FC<BlockWrapperProps> = ({ block, children }) =
     // Let's assume the child handles its own content. 
     // However, for BlockWrapper, if we catch Backspace here, it might be bubbling up.
     
-    if (e.key === 'Backspace') {
-       const target = e.target as HTMLElement;
-       // Check if the target is indeed empty. Using innerText or textContent.
-       // We need to be careful not to delete if cursor is just at start but content exists.
-       // For this simplified version: only delete if truly empty.
-       if (target.innerText.trim() === '') {
+    if (e.key === 'Delete') {
+       // Only delete if the wrapper itself is focused (the "box" is selected)
+       if (e.target === wrapperRef.current) {
            e.preventDefault();
-           // Don't delete the only block if it's the last one? Ideally keep one.
            removeBlock(block.id);
        }
     }
@@ -102,7 +98,7 @@ export const BlockWrapper: React.FC<BlockWrapperProps> = ({ block, children }) =
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      // tabIndex={0} // Remove tabIndex from wrapper so focus goes to contentEditable child
+      tabIndex={0}
       style={{
         outline: 'none',
         position: 'relative',
@@ -132,7 +128,7 @@ export const BlockWrapper: React.FC<BlockWrapperProps> = ({ block, children }) =
       
       {/* Visual cue for block type on hover/focus could go here */}
       {isActive && (
-        <div style={{
+        <div className="block-type-label" style={{
           position: 'absolute',
           right: '0.5rem',
           top: '0.5rem',

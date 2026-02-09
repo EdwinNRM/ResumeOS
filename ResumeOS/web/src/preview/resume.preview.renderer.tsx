@@ -22,7 +22,11 @@ const styles = {
     margin: '0 auto',
     boxSizing: 'border-box' as const,
     lineHeight: 1.5,
+    wordBreak: 'break-word' as const,
+    overflowWrap: 'anywhere' as const,
+    whiteSpace: 'pre-wrap' as const,
   },
+
   section: {
     marginBottom: '1.5rem',
   },

@@ -61,38 +61,40 @@ export const ExperienceBlock: React.FC<ExperienceBlockProps> = ({ id, items }) =
       </h3>
       {items.map((item, idx) => (
         <div key={idx} style={{ marginBottom: '1.5rem', paddingLeft: '0.5rem', borderLeft: '2px solid #2ea043' }}>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <input 
-              value={item.role} 
-              onChange={(e) => updateItem(idx, 'role', e.target.value)}
-              style={{ 
-                background: 'transparent', color: '#e6edf3', border: 'none', borderBottom: '1px solid #30363d', 
-                fontWeight: 'bold', fontSize: '1rem', flex: 1 
-              }} 
-            />
-            <span style={{ color: '#8b949e' }}>@</span>
-            <input 
-              value={item.company} 
-              onChange={(e) => updateItem(idx, 'company', e.target.value)}
-              style={{ 
-                background: 'transparent', color: '#e6edf3', border: 'none', borderBottom: '1px solid #30363d', 
-                fontSize: '1rem', flex: 1 
-              }} 
-            />
-             <button onClick={() => removeItem(idx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f85149' }}>×</button>
+          <div className="experience-item-header" style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', flex: 1, gap: '0.5rem', alignItems: 'center' }}>
+                <input 
+                  value={item.role} 
+                  onChange={(e) => updateItem(idx, 'role', e.target.value)}
+                  style={{ 
+                    background: 'transparent', color: '#e6edf3', border: 'none', borderBottom: '1px solid #30363d', 
+                    fontWeight: 'bold', fontSize: '1rem', flex: 1, minWidth: 0 
+                  }} 
+                />
+                <span style={{ color: '#8b949e' }}>@</span>
+                <input 
+                  value={item.company} 
+                  onChange={(e) => updateItem(idx, 'company', e.target.value)}
+                  style={{ 
+                    background: 'transparent', color: '#e6edf3', border: 'none', borderBottom: '1px solid #30363d', 
+                    fontSize: '1rem', flex: 1, minWidth: 0 
+                  }} 
+                />
+            </div>
+            <button onClick={() => removeItem(idx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f85149', alignSelf: 'flex-end' }}>×</button>
           </div>
           <ul style={{ paddingLeft: '1.2rem', color: '#e6edf3' }}>
             {item.bullets.map((bullet, bIdx) => (
-              <li key={bIdx} style={{ marginBottom: '0.25rem' }}>
+              <li key={bIdx} style={{ marginBottom: '0.25rem', display: 'flex', alignItems: 'center' }}>
                 <input 
                   value={bullet} 
                   onChange={(e) => updateBullet(idx, bIdx, e.target.value)}
                   style={{ 
                     background: 'transparent', color: '#c9d1d9', border: 'none', borderBottom: '1px solid #30363d', 
-                    width: '90%', fontSize: '0.9rem' 
+                    flex: 1, fontSize: '0.9rem', minWidth: 0 
                   }} 
                 />
-                <button onClick={() => removeBullet(idx, bIdx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#8b949e', marginLeft: '0.5rem' }}>×</button>
+                <button onClick={() => removeBullet(idx, bIdx)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#8b949e', marginLeft: '0.5rem', flexShrink: 0 }}>×</button>
               </li>
             ))}
             <li style={{ listStyle: 'none', marginTop: '0.5rem' }}>

@@ -29,9 +29,6 @@ export const ResumeBlockEditor: React.FC = () => {
 
   return (
     <div className="resume-editor" style={{
-      maxWidth: '800px',
-      margin: '0 auto',
-      padding: '4rem 2rem',
       color: '#c9d1d9',
       minHeight: '100vh',
     }}>

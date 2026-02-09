@@ -45,39 +45,19 @@ export const AppTopbar: React.FC = () => {
   };
 
   return (
-    <div style={{
-      height: '60px',
-      backgroundColor: '#161b22',
-      borderBottom: '1px solid #30363d',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 2rem',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div style={{ fontWeight: 'bold', fontSize: '1.2rem', color: '#e6edf3' }}>
+    <div className="topbar">
+      <div style={{ fontWeight: 'bold', fontSize: 'clamp(1rem, 4vw, 1.2rem)', color: '#e6edf3' }}>
         ResumeOS
       </div>
       
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
         <div 
           style={{ position: 'relative' }}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
         >
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.5rem',
-              backgroundColor: '#0d1117',
-              padding: '4px 12px',
-              borderRadius: '20px',
-              border: '1px solid #30363d',
-              cursor: 'help'
-            }}>
-              <span style={{ color: '#8b949e', fontSize: '0.9rem' }}>ATS Score</span>
+            <div className="ats-badge">
+              <span className="ats-label" style={{ color: '#8b949e', fontSize: '0.9rem' }}>ATS Score</span>
               <span style={{ 
                 fontWeight: 'bold', 
                 color: getScoreColor(atsScore)
@@ -97,13 +77,13 @@ export const AppTopbar: React.FC = () => {
                 border: '1px solid #30363d',
                 borderRadius: '6px',
                 padding: '12px',
-                width: '300px',
+                width: 'min(300px, 80vw)',
                 boxShadow: '0 8px 24px rgba(1, 4, 9, 0.4)',
                 zIndex: 1000
               }}>
                 <div style={{ fontWeight: 'bold', marginBottom: '8px', color: '#e6edf3' }}>ATS Feedback</div>
                 {atsFeedback.length > 0 ? (
-                  <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.9rem', color: '#c9d1d9' }}>
+                  <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.85rem', color: '#c9d1d9' }}>
                     {atsFeedback.map((tip, idx) => (
                       <li key={idx} style={{ marginBottom: '4px' }}>
                          {tip.startsWith('PASS') ? '✅ ' : tip.startsWith('WARN') ? '⚠️ ' : 'ℹ️ '}
@@ -121,21 +101,22 @@ export const AppTopbar: React.FC = () => {
         <button 
           onClick={handleExport}
           disabled={isExporting}
+          className="export-btn"
           style={{
             backgroundColor: isExporting ? '#238636aa' : '#238636',
-            color: '#ffffff',
-            border: '1px solid rgba(240, 246, 252, 0.1)',
-            borderRadius: '6px',
-            padding: '6px 16px',
-            fontWeight: 600,
             cursor: isExporting ? 'wait' : 'pointer',
-            fontSize: '14px',
-            transition: 'background-color 0.2s'
+            padding: '6px 10px'
           }}
         >
-          {isExporting ? 'Preparing...' : 'Export PDF'}
+          {isExporting ? '...' : (
+            <>
+              <span className="ats-label">Export PDF</span>
+              <span className="mobile-only" style={{ display: 'none' }}>PDF</span>
+            </>
+          )}
         </button>
       </div>
     </div>
   );
 };
+

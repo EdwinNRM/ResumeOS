@@ -37,7 +37,15 @@ export const SkillsBlock: React.FC<SkillsBlockProps> = ({ id, list }) => {
       </h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
         {list.map((skill, idx) => (
-          <span key={idx} style={{ 
+          <span 
+            key={idx} 
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Delete') {
+                removeSkill(idx);
+              }
+            }}
+            style={{ 
             backgroundColor: 'rgba(56, 139, 253, 0.15)', 
             color: '#58a6ff', 
             padding: '2px 8px', 
@@ -45,8 +53,14 @@ export const SkillsBlock: React.FC<SkillsBlockProps> = ({ id, list }) => {
             fontSize: '0.9rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px'
-          }}>
+            gap: '6px',
+            outline: 'none',
+            border: '1px solid transparent',
+            transition: 'border-color 0.2s'
+          }}
+          onFocus={(e) => e.currentTarget.style.borderColor = '#58a6ff'}
+          onBlur={(e) => e.currentTarget.style.borderColor = 'transparent'}
+          >
             {skill}
             <button 
               onClick={() => removeSkill(idx)}
