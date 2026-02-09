@@ -41,7 +41,7 @@ No distractions.
 ResumeOS follows a monorepo structure:
 
 ```
-resume-os/
+ResumeOS/
   web/      → React + Zustand + Tailwind
   api/      → FastAPI export & ATS engine
   shared/   → schema, validation and ATS rules
@@ -81,7 +81,7 @@ Clone the repository:
 
 ```bash
 git clone git@github.com:EdwinNRM/ResumeOS.git
-cd resume-os
+cd ResumeOS
 ```
 
 ### Running the Application
@@ -93,7 +93,7 @@ You will need to run the **Backend** and **Frontend** in separate terminal windo
 Open your first terminal:
 
 ```bash
-cd resume-os/api
+cd api
 
 # Create a virtual environment (optional but recommended)
 python -m venv venv
@@ -114,7 +114,7 @@ uvicorn app.main:app --reload --port 8000
 Open a **new** terminal window:
 
 ```bash
-cd resume-os/web
+cd web
 
 # Install dependencies
 npm install
